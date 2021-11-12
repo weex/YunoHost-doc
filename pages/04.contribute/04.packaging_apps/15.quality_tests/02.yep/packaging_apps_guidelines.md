@@ -1,5 +1,5 @@
 ---
-title: Packing Applications: Good Practise Guidelines
+title: Packaging Applications: Best Practices
 template: docs
 taxonomy:
     category: docs
@@ -12,12 +12,12 @@ The purpose of this document is to list the various best practices concerning th
 
 !!! This page is outdated and should be reworked
 
-Each good practice is numbered with a number suffixed by the letters YEP (YunoHost Enhancement Proposals), so that it can be easily referenced in the ([package checker](https://github.com/YunoHost/package_check) and [package linter](https://github.com/YunoHost/package_linter)) tools, but also during the reviews of code.
+Each best practice is numbered and prefixed by the letters YEP for YunoHost Enhancement Proposals, so that it can be easily referenced by the ([package checker](https://github.com/YunoHost/package_check) and [package linter](https://github.com/YunoHost/package_linter)) tools, but also during code reviews.
 
 Each YEP is associated with:
 * a status indicating whether the rule has been validated or is still under discussion (draft, validated, refused, obsolete);
 * an indication of the type of test to be carried out (manual or auto if an automatic tool can verify);
-* an indication of the app level from which the rule is required (NOTWORKING, INPROGRESS, WORKING, OFFICIAL), some rules are optional;
+* an indication of the app level from which the rule is required (NOTWORKING, INPROGRESS, WORKING, OFFICIAL). Some rules are optional;
 
 ### YEP Index
 | ID | Title | Status | Test | Level |
@@ -83,39 +83,39 @@ Each YEP is associated with:
 
 ### YEP 1
 #### Communicating with the community
-The YEP 1 is a meta YEP, it explains what it takes to interact with the community around a YunoHost application package.
+YEP 1 is a meta YEP, it explains what it takes to interact with the community around a YunoHost application package.
 
 #### YEP 1.1
 ##### App name and deposit | validated | manual | NOTWORKING |
 Each YunoHost application has an id registered in the application manifest.
-This identifier must be unique between each application packet.
+This identifier must be unique among the list of applications.
 It is therefore recommended to verify its availability by consulting the list of applications referenced in the known applications repositories (official, community, internetcube).
 
-In addition, the identifier must respect the regular expression `^[a-z0-9]((_|-)?[A-z0-9])+$`. 
-In other words, it must respect the following rules:
+In addition, the identifier must respect the following rules:
 * be in lowercase
 * start with a letter or number
 * be alphanumeric (the underscore is allowed)
 * do not contain two underscores or dashes that follow one another
 * do not end with an underscore or dash
+The above is checked by the regular expression `^[a-z0-9]((_|-)?[A-z0-9])+$`. 
 
 For application names containing spaces, virtually all current packages simply remove them without replacing them with dashes or underscores.
 
-By convention, the YunoHost application repositories are always named their ID followed by the string "\_ynh". Thus one can distinguish the upstream repository of the application, the deposit of the YunoHost package. This notation also makes it possible to find applications not listed by the search engines of platforms offering version managers (GitHub for example).
+By convention, the YunoHost application repositories are always named their ID followed by the string "\_ynh". Thus one can distinguish the upstream repository of the application from the repository of the YunoHost package. This notation also makes it possible to find applications on platforms that do not allow searching by version number (GitHub for example).
 
 Example: ID: Example Filing Name: example_ynh
 
 #### YEP 1.2
 ##### Register the app on a known "directory" | validated | manual | NOTWORKING |
-It is advised from the beginning of the packaging to register an app on one of the YunoHost application depots.
+It is advised from the beginning of packaging to register an app on one of the YunoHost application repositories.
 
-These deposits have several functions:
+These repositories have several functions:
 * communicate the existence of a package;
 * indicate the latest version associated with the package (to allow the update of the app by YunoHost);
-* indicate the state of operation of the packet;
+* indicate the state of operation of the package;
 * indicate information about the support of a package.
 
-For the `apps.json` list maintained by the project team, registration is on [the git apps repository](https://github.com/YunoHost/apps). Other non-official lists may exists (including those for non-free apps for example), see more about that in the [community forum](https//forum.yunohost.org).
+For the `apps.json` list maintained by the project team, registration is in [the git apps repository](https://github.com/YunoHost/apps). Other non-official lists may exist (including those for non-free apps for example), see more about that in the [community forum](https//forum.yunohost.org).
 
 #### YEP 1.3
 ##### Indicate the license associated with the package | draft | AUTO | WORKING |
